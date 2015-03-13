@@ -36,10 +36,10 @@ TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     'sfotipy.context_processors.basico',
 )
 
-#GRAPPELLI_ADMIN_TITLE = 'Sfotipy'
+GRAPPELLI_ADMIN_TITLE = 'Sfotipy'
 
 INSTALLED_APPS = (
-    #'grappelli',
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -103,6 +103,6 @@ MEDIA_URL = '/media/'
 
 #Para autenticar el login con correo en vez de usuario.
 # Backends
-# AUTHENTICATION_BACKENDS = (
-#     'userprofiles.backends.EmailBackend',
-# )
+AUTHENTICATION_BACKENDS = (
+    'userprofiles.backends.EmailBackend',
+)

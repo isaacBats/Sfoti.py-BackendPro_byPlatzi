@@ -2,7 +2,15 @@ from django.conf.urls import patterns, include, url
 from django.conf import settings
 from django.contrib import admin
 admin.autodiscover()
-from artists.views import ArtistDetailView
+
+from artists.views import ArtistDetailView, ArtistListView
+from artists.views import ArtistViewSet
+
+from rest_framework import routers
+
+
+router = routers.DefaultRouter()
+router.register(r'artists', ArtistViewSet)
 
 urlpatterns = patterns('',
     # Examples:
@@ -15,6 +23,10 @@ urlpatterns = patterns('',
     url(r'^signup/', 'userprofiles.views.signup', name='signup'),
     url(r'^signin/', 'userprofiles.views.signin', name='signin'),
     url(r'^artists/(?P<pk>[\d]+)', ArtistDetailView.as_view()),
+    url(r'^artists/', ArtistListView.as_view()),
+    
+    url(r'^api/', include(router.urls)),
+    #url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 )
 
 #if settings.DEBUG:

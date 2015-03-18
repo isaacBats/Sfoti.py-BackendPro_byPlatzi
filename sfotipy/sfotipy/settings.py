@@ -24,7 +24,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,10 @@ TEMPLATE_CONTEXT_PROCESSORS = TCP + (
 )
 
 #GRAPPELLI_ADMIN_TITLE = 'Sfotipy'
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',)
+}
 
 INSTALLED_APPS = (
     #'grappelli',
@@ -53,6 +57,7 @@ INSTALLED_APPS = (
     'userprofiles',
     'mockups',
     'django_extensions',
+    'rest_framework',
 )
 
 MIDDLEWARE_CLASSES = (

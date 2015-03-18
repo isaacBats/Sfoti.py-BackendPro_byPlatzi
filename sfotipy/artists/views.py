@@ -25,9 +25,9 @@ from .serializers import ArtistSerializer
 
 class ArtistViewSet(viewsets.ModelViewSet):
     model = Artist
-    queryset = Artist.objects.all()
-    serializer_class = ArtistSerializer()
+    #queryset = Artist.objects.all()
+    serializer_class = ArtistSerializer
     filter_fields = ('id', 'first_name','last_name', )
     paginate_by = 1
     
-from django.contrib.auth.models import User, Group
+#from django.contrib.auth.models import User, Group

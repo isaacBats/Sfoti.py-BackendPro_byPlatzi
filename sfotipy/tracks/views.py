@@ -38,3 +38,9 @@ def track_view(request, title):
 
 	#Tarea: como podemos serializar todo el track junto con el album y el artista
 	#revisar serialization django.
+
+from rest_framework import viewsets
+
+class TrackViewSet(viewsets.ModelViewSet):
+    model = Track
+    

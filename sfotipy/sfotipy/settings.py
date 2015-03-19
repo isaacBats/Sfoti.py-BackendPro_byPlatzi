@@ -38,13 +38,13 @@ TEMPLATE_CONTEXT_PROCESSORS = TCP + (
 
 #GRAPPELLI_ADMIN_TITLE = 'Sfotipy'
 
-REST_FRAMEWORK = {
-    #'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',)
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly', 
-    ]
+# REST_FRAMEWORK = {
+#     #'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',)
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly', 
+#     ]
 
-}
+# }
 
 INSTALLED_APPS = (
     #'grappelli',

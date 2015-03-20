@@ -5,16 +5,16 @@ admin.autodiscover()
 
 from artists.views import ArtistDetailView, ArtistListView
 from artists.views import ArtistViewSet
-# from albums.views import AlbumViewSet
-# from tracks.views import TrackViewSet
+from albums.views import AlbumViewSet
+from tracks.views import TrackViewSet
 
 from rest_framework import routers
 
 
 router = routers.DefaultRouter()
 router.register(r'artists', ArtistViewSet)
-# router.register(r'albums', AlbumViewSet)
-# router.register(r'tracks', TrackViewSet)
+router.register(r'albums', AlbumViewSet)
+router.register(r'tracks', TrackViewSet)
 
 urlpatterns = patterns('',
     # Examples:

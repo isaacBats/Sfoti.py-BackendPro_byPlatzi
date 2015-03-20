@@ -40,7 +40,10 @@ def track_view(request, title):
 	#revisar serialization django.
 
 from rest_framework import viewsets
+from .serializers import TrackSerializer
 
 class TrackViewSet(viewsets.ModelViewSet):
-    model = Track
+    # model = Track
+    queryset = Track.objects.all()
+    serializer_class = TrackSerializer
     

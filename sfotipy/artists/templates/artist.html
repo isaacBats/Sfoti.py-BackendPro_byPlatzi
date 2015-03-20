@@ -1,12 +1,18 @@
-{{artist.first_name}} 
+{% load static from staticfiles %}
+{% if fav_artist %}
+Pagina de artista:
+{{fav_artist.first_name}} {{fav_artist.last_name}}
+{% else %}
+Listado de artistas:
+{% for a in artists  %}
+{{a}}
+{% endfor %}
+{% endif %}
+<!-- Este es el ejemplo numero 1 -->
+<!-- <img src="/static/Cover_Front.jpg" alt="Cover"> -->
 
-<!-- <!DOCTYPE html>
-<html lang="es">
-<head>
-	<meta charset="utf-8" />
-	<title></title>
-</head>
-<body>
+<!-- Este es el ejemplo numero 2 y mas conveniente -->
+<!-- <img src="{{STATIC_URL}}Cover_Front.jpg" alt="Cover"> -->
 
-</body>
-</html> -->
+<!-- mas completa usando staticfiles -->
+<img src="{% static "Cover_Front.jpg" %}" alt="Cover">

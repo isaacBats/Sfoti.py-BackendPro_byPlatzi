@@ -1,3 +1,4 @@
+{% load cache %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,6 +7,7 @@
 </head>
 <body>
 	<section>
+	{{request.user}}
 	{{selected_track}}
 		<ul>
 			{% for track in tracks %}
@@ -15,7 +17,9 @@
 				</a>{% if track.id == selected_track.id %} --------- {% endif %}
 			</li>{% endfor %}
 		</ul>
-		<p>Title:{{track.title}}</p>
+		{% cache 60 track.title %}
+		<p>Titlesss:{{track.title}}</p>
+		{% endcache %}
 		<p>Order:{{track.order}}</p>
 		<p>File:{{track.track_file}}</p>
 		<p>Album:{{track.album}}</p>

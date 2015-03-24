@@ -1,9 +1,19 @@
 import json
-from django.shortcuts import render, get_object_or_404
+import time
+
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, Http404
+from django.shortcuts import render, get_object_or_404
+
 from .models import Track
+from django.core.cache import cache
+from django.views.decorators.cache import cache_page
+
+from artists.tasks import demorada
+
 # Create your views here.
-#@login_required
+# @cache_page(60)
+@login_required
 def track_view(request, title):
 	#import ipdb; ipdb.set_trace()	
 	# try:
@@ -15,26 +25,27 @@ def track_view(request, title):
 	#shortcut de django para 404
 	track = get_object_or_404(Track, title=title)
 	bio = track.artist.biography
-	
-	#return HttpResponse('Ok')
-	return render(request, 'track.html', {'track':track, 'bio':bio})
-
-	data = {
-		'title': track.title,
-		'order': track.order,
-		'album': track.album.title,
-		'artist': {
-			'name':track.artist.first_name,
-			'bio': bio,
+	data = cache.get('data_%s' % title)
+	if data is None:
+		data = {
+			'title': track.title,
+			'order': track.order,
+			'album': track.album.title,
+			'artist': {
+				'name':track.artist.first_name,
+				'bio': bio,
 		}
 	}
+	demorada.apply_async(countdown=5)
+	# time.sleep(5)
+	cache.set('data_%s' % title, data)
 
+	return render(request, 'track.html', {'track':track, 'bio':bio})
+	#return HttpResponse('Ok')
+	
 	#con la siguiente instruccion convertimos el diccionario de python a json
 	#json_data = json.dumps(data)
-
 	#return HttpResponse(json_data, content_type='application/json')
-
-
 
 	#Tarea: como podemos serializar todo el track junto con el album y el artista
 	#revisar serialization django.

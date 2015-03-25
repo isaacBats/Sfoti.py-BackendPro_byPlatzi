@@ -36,7 +36,7 @@ TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     'sfotipy.context_processors.basico',
 )
 
-# GRAPPELLI_ADMIN_TITLE = 'Sfotipy'
+GRAPPELLI_ADMIN_TITLE = 'Sfotipy'
 
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',)
